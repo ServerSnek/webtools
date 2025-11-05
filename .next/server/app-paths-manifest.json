@@ -1,20 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/css-tools/page": "app/css-tools/page.js",
-  "/pdf/edit/page": "app/pdf/edit/page.js",
-  "/pdf/jpg-to-pdf/page": "app/pdf/jpg-to-pdf/page.js",
-  "/pdf/compress/page": "app/pdf/compress/page.js",
-  "/pdf/merge/page": "app/pdf/merge/page.js",
-  "/pdf/pdf-to-excel/page": "app/pdf/pdf-to-excel/page.js",
-  "/pdf/pdf-to-jpg/page": "app/pdf/pdf-to-jpg/page.js",
-  "/pdf/pdf-to-ppt/page": "app/pdf/pdf-to-ppt/page.js",
-  "/pdf/pdf-to-word/page": "app/pdf/pdf-to-word/page.js",
-  "/pdf/ppt-to-pdf/page": "app/pdf/ppt-to-pdf/page.js",
-  "/pdf/rotate/page": "app/pdf/rotate/page.js",
-  "/pdf/split/page": "app/pdf/split/page.js",
-  "/typing-test/page": "app/typing-test/page.js",
-  "/pdf/protect/page": "app/pdf/protect/page.js",
-  "/pdf/excel-to-pdf/page": "app/pdf/excel-to-pdf/page.js",
   "/page": "app/page.js",
-  "/pdf/word-to-pdf/page": "app/pdf/word-to-pdf/page.js"
+  "/pdf/pdf-to-word/page": "app/pdf/pdf-to-word/page.js"
 }
