@@ -171,6 +171,15 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../app/pdf/watermark/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/pdf/watermark">> = Specific
+  const handler = {} as typeof import("../../app/pdf/watermark/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/pdf/word-to-pdf/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/pdf/word-to-pdf">> = Specific
