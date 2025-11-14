@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { usePdfDocument } from "@/hooks/usePdfDocument";
-import { Loader2 } from "lucide-react";
+import { useEffect, useRef, useState } from 'react';
+import { usePdfDocument } from '@/hooks/usePdfDocument';
+import { Loader2 } from 'lucide-react';
 
 interface PDFPreviewProps {
   file: File;
@@ -10,6 +10,7 @@ interface PDFPreviewProps {
   width?: number;
   height?: number;
   className?: string;
+  rotation?: number;
 }
 
 export default function PDFPreview({
@@ -17,7 +18,8 @@ export default function PDFPreview({
   pageNumber = 1,
   width = 150,
   height = 200,
-  className = "",
+  className = '',
+  rotation = 0,
 }: PDFPreviewProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loading, setLoading] = useState(true);
@@ -41,14 +43,17 @@ export default function PDFPreview({
           return;
         }
 
-        const context = canvas.getContext("2d");
+        const context = canvas.getContext('2d');
         if (!context) {
           return;
         }
 
-        const viewport = page.getViewport({ scale: 1 });
-        const scale = Math.min(width / viewport.width, height / viewport.height);
-        const scaledViewport = page.getViewport({ scale });
+        const viewport = page.getViewport({ scale: 1, rotation });
+        const scale = Math.min(
+          width / viewport.width,
+          height / viewport.height
+        );
+        const scaledViewport = page.getViewport({ scale, rotation });
 
         canvas.width = scaledViewport.width;
         canvas.height = scaledViewport.height;
@@ -67,9 +72,9 @@ export default function PDFPreview({
         if (err?.name === 'RenderingCancelledException') {
           return;
         }
-        console.error("Error rendering PDF page:", err);
+        console.error('Error rendering PDF page:', err);
         if (isMounted) {
-          setError("Failed to render page");
+          setError('Failed to render page');
           setLoading(false);
         }
       }
@@ -89,14 +94,14 @@ export default function PDFPreview({
         }
       }
     };
-  }, [pdfDoc, pageNumber, width, height]);
+  }, [pdfDoc, pageNumber, width, height, rotation]);
 
   // Use document loading state if document is still loading
   const isLoading = docLoading || loading;
   const displayError = docError || error;
 
   return (
-    <div 
+    <div
       className={`relative bg-muted rounded-md overflow-hidden ${className}`}
       style={{ width, height }}
     >
@@ -112,7 +117,9 @@ export default function PDFPreview({
       )}
       <canvas
         ref={canvasRef}
-        className={`max-w-full max-h-full ${isLoading || displayError ? 'opacity-0' : 'opacity-100'}`}
+        className={`max-w-full max-h-full ${
+          isLoading || displayError ? 'opacity-0' : 'opacity-100'
+        }`}
       />
     </div>
   );
